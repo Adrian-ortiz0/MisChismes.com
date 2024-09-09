@@ -94,3 +94,36 @@ footer {
     background-color: #e91e63;
     color: white;
 }
+.listaDeChismes{
+    width: 100%;
+    height: 40vh;
+    border: 2px solid red;
+    display: flex;
+    flex-direction:column;
+    overflow: auto;
+}
+.plantillaChismes{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    background-color: #33333375;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.plantillaChismes div{
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    align-items: center;
+
+}
+
+.btnsChismes{
+    width: 70px;
+    margin: 0;
+}
+
+.filterBtn{
+    width: 70px;
+    font-size: 13px;
+}

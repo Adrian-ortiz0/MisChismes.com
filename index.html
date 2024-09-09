@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mischismes.com</title>
     <link rel="stylesheet" href="estilos.css">
+    <script defer src="main.js"></script>
 </head>
 <body>
     <header>
@@ -39,7 +40,7 @@
                 <label for="comentarios">Comentarios Adicionales:</label>
                 <textarea id="comentarios"></textarea>
 
-                <button type="submit">Guardar Chisme</button>
+                <button id="btnGuardarChisme">Guardar Chisme</button>
             </form>
         </section>
 
@@ -47,26 +48,19 @@
             <h2>Lista de Chismes</h2>
             <div id="filtros">
                 <label for="filtroCategoria">Filtrar por Categoría:</label>
-                <select id="filtroCategoria">
-                    <option value="">Todas</option>
-                    <option value="Personal">Personal</option>
-                    <option value="Laboral">Laboral</option>
-                    <option value="Familiar">Familiar</option>
-                </select>
-
+                <button class="filterBtn" id="btnTodos">Todos</button>
+                <button class="filterBtn" id="btnLaboral">Laboral</button>
+                <button class="filterBtn" id="btnFamiliar">Familiar</button>
+                <button class="filterBtn" id="btnPersonal">Personal</button>
                 <label for="filtroEstado">Filtrar por Estado:</label>
-                <select id="filtroEstado">
-                    <option value="">Todos</option>
-                    <option value="Guardado">Guardado</option>
-                    <option value="Contado">Contado</option>
-                </select>
+                <button class="filterBtn" id="btnEstadoTodos">Todos</button>
+                <button class="filterBtn" id="btnGuardado">Guardado</button>
+                <button class="filterBtn" id="btnContado">Contado</button>
 
                 <input type="text" id="busqueda" placeholder="Buscar chisme...">
             </div>
-
-            <ul id="listaChismes">
-                <!-- Aquí se mostrarán los chismes guardados -->
-            </ul>
+        </section>
+        <section class="listaDeChismes" id="listaDeChismes">
         </section>
     </main>
 
