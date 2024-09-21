@@ -36,6 +36,16 @@ filtroCategoria.addEventListener("change", function () {
   filtrarChismes();
 });
 
+const filtroEstado = document.getElementById("filtroEstado");
+filtroEstado.addEventListener("click", function () {
+  filtrarChismesPorEstado();
+});
+
+const busqueda = document.getElementById("busqueda");
+busqueda.addEventListener("input", function () {
+  filtrarPorDescripcion();
+});
+
 //------------------------------------------------------
 
 // Funciones
@@ -133,5 +143,38 @@ function filtrarChismes() {
       return chisme.categoria === filtroCategoria;
     });
   }
+  actualizarListaChismes(chismesEncontrados);
+}
+
+function filtrarChismesPorEstado() {
+  cargarChismes();
+  const filtroEstado = document.getElementById("filtroEstado").value;
+
+  let chismesEncontrados;
+
+  if (filtroEstado === "All") {
+    chismesEncontrados = chismes;
+    console.log(chismesEncontrados);
+  } else {
+    chismesEncontrados = chismes.filter(function (chisme) {
+      return chisme.estado === filtroEstado;
+    });
+  }
+  actualizarListaChismes(chismesEncontrados);
+}
+
+function filtrarPorDescripcion() {
+  cargarChismes();
+  const busqueda = document.getElementById("busqueda").value;
+  let chismesEncontrados;
+
+  if (busqueda === "") {
+    chismesEncontrados = chismes;
+  } else {
+    chismesEncontrados = chismes.filter(function (chisme) {
+      return chisme.descripcion.toLowerCase().includes(busqueda.toLowerCase());
+    });
+  }
+
   actualizarListaChismes(chismesEncontrados);
 }
