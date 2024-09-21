@@ -93,7 +93,7 @@ function mostrarChismes() {
   contenedorDeChismes.innerHTML = "";
   const bannerChismes = document.createElement("div");
   bannerChismes.innerHTML = `<div>ID</div><div>Description</div><div>Category</div><div>Date</div><div>Status</div>`;
-  bannerChismes.classList.add("plantillaChismes");
+  bannerChismes.classList.add("bannerChismes");
   contenedorDeChismes.append(bannerChismes);
 
   chismes.forEach(function (chisme, id) {
@@ -114,8 +114,8 @@ function actualizarListaChismes(listaFiltrada) {
   contenedorDeChismes.innerHTML = "";
   const bannerChismes = document.createElement("div");
   bannerChismes.innerHTML = `<div>ID</div><div>Description</div><div>Category</div><div>Date</div><div>Status</div>`;
-  bannerChismes.classList.add("plantillaChismes");
-  contenedorDeChismes.append(bannerChismes);
+  bannerChismes.classList.add("bannerChismes");
+  contenedorDeChismes.appendChild(bannerChismes);
 
   listaFiltrada.forEach(function (chisme, id) {
     const newDiv = document.createElement("div");
