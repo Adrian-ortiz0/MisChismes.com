@@ -1,9 +1,5 @@
 let chismes = [];
 
-//---------------------------------------------------------
-
-// Cargar y guardar
-
 function guardarChismes() {
   localStorage.setItem("chismes", JSON.stringify(chismes));
 }
@@ -16,10 +12,6 @@ function cargarChismes() {
     chismes = [];
   }
 }
-
-//---------------------------------------------------------
-
-// LLamadas de eventos
 
 const chismeForm = document.getElementById("chismeForm");
 chismeForm.addEventListener("click", function (e) {
@@ -45,10 +37,6 @@ const busqueda = document.getElementById("busqueda");
 busqueda.addEventListener("input", function () {
   filtrarPorDescripcion();
 });
-
-//------------------------------------------------------
-
-// Funciones
 
 function guardandoChisme() {
   cargarChismes();
@@ -87,44 +75,58 @@ function guardandoChisme() {
   mostrarChismes();
 }
 
+function eliminarChisme(index) {
+  cargarChismes();
+  chismes.splice(index, 1);
+  guardarChismes();
+  mostrarChismes();
+}
+
 function mostrarChismes() {
   cargarChismes();
   const contenedorDeChismes = document.getElementById("listaDeChismes");
   contenedorDeChismes.innerHTML = "";
   const bannerChismes = document.createElement("div");
-  bannerChismes.innerHTML = `<div>ID</div><div>Description</div><div>Category</div><div>Date</div><div>Status</div>`;
+  bannerChismes.innerHTML = `<div>ID</div><div>Description</div><div>Category</div><div>Date</div><div>Status</div><div>Action</div>`;
   bannerChismes.classList.add("bannerChismes");
   contenedorDeChismes.append(bannerChismes);
 
   chismes.forEach(function (chisme, id) {
     const newDiv = document.createElement("div");
     newDiv.classList.add("plantillaChismes");
-    newDiv.innerHTML = `<div>${id + 1}</div><div>${
-      chisme.descripcion
-    }</div><div>${chisme.categoria}</div><div>${chisme.fecha}</div><div>${
-      chisme.estado
-    }</div>`;
+    newDiv.innerHTML = `
+      <div>${id + 1}</div>
+      <div>${chisme.descripcion}</div>
+      <div>${chisme.categoria}</div>
+      <div>${chisme.fecha}</div>
+      <div>${chisme.estado}</div>
+      <div><button class="btn-delete" onclick="eliminarChisme(${id})">Delete</button></div>
+    `;
     contenedorDeChismes.appendChild(newDiv);
   });
 }
-mostrarChismes();
 
 function actualizarListaChismes(listaFiltrada) {
   const contenedorDeChismes = document.getElementById("listaDeChismes");
   contenedorDeChismes.innerHTML = "";
   const bannerChismes = document.createElement("div");
-  bannerChismes.innerHTML = `<div>ID</div><div>Description</div><div>Category</div><div>Date</div><div>Status</div>`;
+  bannerChismes.innerHTML = `<div>ID</div><div>Description</div><div>Category</div><div>Date</div><div>Status</div><div>Action</div>`;
   bannerChismes.classList.add("bannerChismes");
   contenedorDeChismes.appendChild(bannerChismes);
 
   listaFiltrada.forEach(function (chisme, id) {
     const newDiv = document.createElement("div");
     newDiv.classList.add("plantillaChismes");
-    newDiv.innerHTML = `<div>${id + 1}</div><div>${
-      chisme.descripcion
-    }</div><div>${chisme.categoria}</div><div>${chisme.fecha}</div><div>${
-      chisme.estado
-    }</div>`;
+    newDiv.innerHTML = `
+      <div>${id + 1}</div>
+      <div>${chisme.descripcion}</div>
+      <div>${chisme.categoria}</div>
+      <div>${chisme.fecha}</div>
+      <div>${chisme.estado}</div>
+      <div><button class="btn-delete" onclick="eliminarChisme(${chismes.indexOf(
+        chisme
+      )})">Delete</button></div>
+    `;
     contenedorDeChismes.appendChild(newDiv);
   });
 }
@@ -137,7 +139,6 @@ function filtrarChismes() {
 
   if (filtroCategoria === "All") {
     chismesEncontrados = chismes;
-    console.log(chismesEncontrados);
   } else {
     chismesEncontrados = chismes.filter(function (chisme) {
       return chisme.categoria === filtroCategoria;
@@ -154,7 +155,6 @@ function filtrarChismesPorEstado() {
 
   if (filtroEstado === "All") {
     chismesEncontrados = chismes;
-    console.log(chismesEncontrados);
   } else {
     chismesEncontrados = chismes.filter(function (chisme) {
       return chisme.estado === filtroEstado;
@@ -178,3 +178,5 @@ function filtrarPorDescripcion() {
 
   actualizarListaChismes(chismesEncontrados);
 }
+
+mostrarChismes();
