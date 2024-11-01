@@ -4,7 +4,12 @@ Esta pagina permite al usuario guardar chismes de manera eficiente y luego permi
 
 ## Funcionalidades
 
-Permite guardar y cargar chismes, permite el filtrado de estos y la eliminacion tambien.
+1. Creacion de chismes
+2. Eliminacion de chismes
+3. Filtrado de chismes por fecha
+4. Filtrado de chismes por categoria
+5. Mostrar todos los chismes
+6. Cambiar el estado de los chismes
 
 ## Uso
 
